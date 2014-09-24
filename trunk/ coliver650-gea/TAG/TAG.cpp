@@ -3,49 +3,86 @@
 #include <vector>
 using namespace std;
 
-class Clock {
-private:
-public:
-	// Add constructor.
-};
+// Canto defined classes.
+#include <Clock.h>
+#include <Test.h>
 
-class Item {
-private:
-public:
-};
+// The game engine will handle standard input via low-level windows console functions.  This allows the game to track the
+// passage of time more realistically, without the interruptions that the use of cin would introduce.  Here the variables
+// required for this feature are defined globally.
+HANDLE hIn;
+INPUT_RECORD inRec;
+DWORD numRead, numEvents;
+bool parseInput = false;
+unsigned bufferSize = 128;
+int inputBytes = 1;
+vector<char> inputBuffer;
 
-class Room {
-private:
-public:
-};
+// main() helper functions.
+void processAsciiChar() {
+	
+	if (inRec.Event.KeyEvent.uChar.AsciiChar == '\r' || inputBuffer.size() >= bufferSize) {
+		parseInput = true;
+		FlushConsoleInputBuffer(hIn);
+		cout << endl;
+	}
+	else {
+		if (inRec.Event.KeyEvent.uChar.AsciiChar == '\b') {
+			if (inputBuffer.size() > 0) {
+				inputBuffer.pop_back();
+				cout << inRec.Event.KeyEvent.uChar.AsciiChar;
+			}
+		}
+		else {
+			inputBuffer.push_back(inRec.Event.KeyEvent.uChar.AsciiChar);
+			cout << inRec.Event.KeyEvent.uChar.AsciiChar;
+		}
+	}
+}
 
-class Player {
-private:
-public:
-};
+void getInput() {
+	
+	ReadConsoleInput(hIn, &inRec, inputBytes, &numRead);
+	if (inRec.EventType == KEY_EVENT) {
+		if (inRec.Event.KeyEvent.bKeyDown) {
+			// Add code to unpause game.
+			if (inRec.Event.KeyEvent.uChar.AsciiChar) {
+				processAsciiChar();
+			}
+		}
+	}
+}
 
-class Game {
-private:
-	// Add clock member.
-	// Add room members.
-	// Add player member.
-public:
-	// Add constructor.
-};
+void run_tests() {
+	
+	cout << "Running Canto test suite..." << endl << endl;
 
-int main()
-{
-	HANDLE hIn;
-	INPUT_RECORD inRec;
-	DWORD numRead, numEvents;
-	bool parseInput = false;
-	unsigned bufferSize = 128;
-	int inputBytes = 1;
-	vector<char> inputBuffer;
+	// Test the Clock class.
+	Test cantoTest;
+	cantoTest.test_Clock_class();
+
+	cout << "Tests are conducted using assertions so failures are written to console." << endl;
+	cout << "No news is good news, all tests have passed!" << endl << endl;
+	cout << "Press any key to continue." << endl;
+	cin.ignore();
+}
+
+// main() the function that drives the game.
+int main(int argc, char* argv[]) {
+	
+	cout << "Welcome to Canto.\n\n" << endl;
+
+	// A parameter of 't' passed to the game runs its test suite only then exits.
+	if (argc > 0) {
+		if (*argv[1] == 't') {
+			run_tests();
+			return 0;
+		}
+	}
 
 	hIn = GetStdHandle(STD_INPUT_HANDLE);
+	Clock gameClock;
 
-	cout << "Welcome to my first text based game!" << endl;
 	cout << "> ";
 
 	// Add code to create objects.
@@ -53,36 +90,12 @@ int main()
 	// Game loop.
 	while (true)
 	{
-		// Get input.
+		// Check for console input.
 		while (true)
 		{
 			GetNumberOfConsoleInputEvents(hIn, &numEvents);
 			if (numEvents > 0) {
-				ReadConsoleInput(hIn, &inRec, inputBytes, &numRead);
-				if (inRec.EventType == KEY_EVENT) {
-					if (inRec.Event.KeyEvent.bKeyDown) {
-						// Add code to unpause game.
-						if (inRec.Event.KeyEvent.uChar.AsciiChar) {
-							if (inRec.Event.KeyEvent.uChar.AsciiChar == '\r' || inputBuffer.size() >= bufferSize) {
-								parseInput = true;
-								FlushConsoleInputBuffer(hIn);
-								cout << endl;
-							}
-							else {
-								if (inRec.Event.KeyEvent.uChar.AsciiChar == '\b') {
-									if (inputBuffer.size() > 0) {
-										inputBuffer.pop_back();
-										cout << inRec.Event.KeyEvent.uChar.AsciiChar;
-									}
-								}
-								else {
-									inputBuffer.push_back(inRec.Event.KeyEvent.uChar.AsciiChar);
-									cout << inRec.Event.KeyEvent.uChar.AsciiChar;
-								}
-							}
-						}
-					}
-				}
+				getInput();
 			}
 			else {
 				break;
@@ -112,6 +125,5 @@ int main()
 
 		// Render.
 	}
-
 	return 0;
 }
