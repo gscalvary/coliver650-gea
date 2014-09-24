@@ -4,7 +4,6 @@
 using namespace std;
 
 // Canto defined classes.
-#include <Clock.h>
 #include <Test.h>
 
 // The game engine will handle standard input via low-level windows console functions.  This allows the game to track the
@@ -57,11 +56,22 @@ void run_tests() {
 	
 	cout << "Running Canto test suite..." << endl << endl;
 
-	// Test the Clock class.
+	// Initialize a test instance.
 	Test cantoTest;
-	cantoTest.test_Clock_class();
 
-	cout << "Tests are conducted using assertions so failures are written to console." << endl;
+	// Test the Clock class.
+	cantoTest.test_Clock_class();
+	cout << "Clock class tests complete." << endl;
+
+	// Test the Game class.
+	cantoTest.test_Game_class();
+	cout << "Game class tests complete." << endl;
+
+	// Test the Point class.
+	cantoTest.test_Point_class();
+	cout << "Point class tests complete." << endl;
+
+	cout << endl << "Tests are conducted using assertions so failures are written to console." << endl;
 	cout << "No news is good news, all tests have passed!" << endl << endl;
 	cout << "Press any key to continue." << endl;
 	cin.ignore();
@@ -80,12 +90,12 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
+	// Initialize game.
+	Game cantoGame;
+
+	// Take control of standard console input.
 	hIn = GetStdHandle(STD_INPUT_HANDLE);
-	Clock gameClock;
-
 	cout << "> ";
-
-	// Add code to create objects.
 
 	// Game loop.
 	while (true)
