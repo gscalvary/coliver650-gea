@@ -1,13 +1,13 @@
-#summary One-sentence summary of this page.
+#summary Basic premise of the game.
 
 = Introduction =
 
-Basic premise of the game.
+Unorganized notes regarding how I would like the game to work.
 
 
 = Details =
 
-Canto
+Game Name: Canto
 
 Issue:
 What about a 2D heuristic?  This could be fun to play with during the lose condition, in the throw of the player to the 8th circle.  Perhaps a chance for redemption should be based on answering 1 or more questions correctly before they crash to the ground.
