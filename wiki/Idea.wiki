@@ -26,6 +26,7 @@ Actions:
 (D)escend: attempt to move to the next circle.
 (R)eset: allow the player to reset the circle timer and actions, only allowable from the losing game state.
 (P)ause: allow the player to pause the game.
+(Q)uit: quit the game.
 
 Choose an answer to the demon's question:
 (A)
@@ -52,77 +53,41 @@ Barely discernable in a distant dim recess an elderly man, whose image seems nea
 
 
 Canto I (Limbo, 1st Circle - The Unbaptized)
-
-"We are lost, afflicted only this one way:
-That having no hope, we live in longing."  I heard
-These words with heartfelt grief that seized on me
-
-Knowing how many worthy souls endured
-Suspension in that Limbo.
-
+gameState == 0
 
 Canto II (2nd Circle - The Lustful)
-
-...All light is mute, with a bellowing like the ocean
-Turbulent in a storm of warring winds,
-The hurricane of Hell in perpetual motion
-
-Sweeping the ravaged spirits...
-
+gameState == 1
 
 Canto III (3rd Circle - Gluttons)
-
-Three-headed Cerberus, monstrous and cruel,
-
-Barks doglike at the souls immersed here, louder
-For his triple throat.
-
+gameState == 2
 
 Canto IV (4th Circle - Spenders & Hoarders)
-
-Each pushes a weight against his chest, and howls
-At his opponent each time that they clash:
-"Why do you squander?" and "Why do you hoard?" Each wheels
-
-To roll his weight back round again: they rush
-Toward the circle's opposite point, collide
-Painfully once more, and curse each other afresh...
-
+gameState == 3
 
 Canto V (5th Circle - The Wrathful & Sullen)
-
-...for some time
-Before we reached the lofty tower's base
-Our eyes were following two points of flame
-
-Visible at the top; and answering these
-Another returned the signal, so far away
-The eye could barely catch it.
+gameState == 4
 
 Canto VI (6th Circle(Dis) - Heretics)
-
-...we in our turn
-Stepped forward toward the city and through the gate...
-
+gameState == 5
 
 Canto VII (7th Circle - Violent) Do the suicide, ring 2.
-
-All over the sand
-Distended flakes of fire drifted from aloft
-
-Slowly as mountain snow without a wind.
-
+gameState == 6
 
 Canto VIII (8th Circle - Those who are fraudulent)
-
-
+gameState == 7
 
 Canto IV (9th Circle - The betrayers)
+gameState == 8
 
-
+Game Over
+gameState == 9
 Emergence (Win)
 
 Through a round aperture I saw appear
 
 Some of the beautiful things that Heaven bears,
 Where we came forth, and once more saw the stars.
+
+or...
+
+Permanent Resident(Loss)
