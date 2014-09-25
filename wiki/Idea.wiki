@@ -1,0 +1,128 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Basic premise of the game.
+
+
+= Details =
+
+Canto
+
+Issue:
+What about a 2D heuristic?  This could be fun to play with during the lose condition, in the throw of the player to the 8th circle.  Perhaps a chance for redemption should be based on answering 1 or more questions correctly before they crash to the ground.
+
+Goal: Emerge enlightened.  The player emerges from their journey with a brief taste of the world described in Dante's Inferno as translated by the great Robert Pinsky.  A score from 0 - 9 will be awarded based on the correct answers given to the demon questions.
+
+The player, or Traveler, must learn why the occupants of this underworld are there, of what are they guilty?  If they successfully explore the underworld (Hell) and demonstrate understanding then they will be allowed to leave (win), else they may just become another permanent resident (lose).
+
+The Traveler's human spirit can only withstand each circle a specific period of time.  The time may get shorter as the Traveler descends.  Periodically the game will warn the player of impending danger as the timer counts down.  Letting the timer reach zero will cause the player to be banished to where-ever the slothful or lazy are punished (3rd Circle, Gluttons, creative license!).  this is a lose state.
+
+Before being allowed to descend the demon of the circle will ask the Traveler of what sin the tormented are guilty.  The Traveler is always allowed to pass as the demons will lie if they give an incorrect answer and tell them it was correct.  After accumulating 5 incorrect answers the Traveler will be seized (perhaps 2D heuristic here to possibly escape or to try to limit the depth to which they are thrown?) and sent to permanently dwell with the falsifiers, 8th circle, pouch 10 (another lose state).  Yay, more creative license!
+
+Actions:
+(L)ook: use an array of strings advancing the index to reveal more Inferno text.
+(T)alk Target: illicit stories from the underworld inhabitants, reveal more Inferno text.
+(D)escend: attempt to move to the next circle.
+(R)eset: allow the player to reset the circle timer and actions, only allowable from the losing game state.
+(P)ause: allow the player to pause the game.
+
+Choose an answer to the demon's question:
+(A)
+(B)
+(C)
+
+
+
+Introduction
+
+...when I came to stop
+Below a hill that marked one end of the valley
+That had pierced my heart with terror, I looked up
+
+Toward the crest and saw its shoulders already
+Mantled in rays of that bright planet that shows
+The road to everyone, whatever our journey.
+
+Perhaps a weary traveler, perhaps suspended in dream, or perhaps passed from what you once knew.  The way back is obscured, diffuse and out of reach.  Only the way ahead is revealed by the first rays of dawn.  And so while the dark valley watches you descend into the chilled, timeless air of a cavern at the base of the large hill croached before you.
+
+Barely discernable in a distant dim recess an elderly man, whose image seems nearly to fade, waits patiently for you.
+
+
+
+
+Canto I (Limbo, 1st Circle - The Unbaptized)
+
+"We are lost, afflicted only this one way:
+That having no hope, we live in longing."  I heard
+These words with heartfelt grief that seized on me
+
+Knowing how many worthy souls endured
+Suspension in that Limbo.
+
+
+Canto II (2nd Circle - The Lustful)
+
+...All light is mute, with a bellowing like the ocean
+Turbulent in a storm of warring winds,
+The hurricane of Hell in perpetual motion
+
+Sweeping the ravaged spirits...
+
+
+Canto III (3rd Circle - Gluttons)
+
+Three-headed Cerberus, monstrous and cruel,
+
+Barks doglike at the souls immersed here, louder
+For his triple throat.
+
+
+Canto IV (4th Circle - Spenders & Hoarders)
+
+Each pushes a weight against his chest, and howls
+At his opponent each time that they clash:
+"Why do you squander?" and "Why do you hoard?" Each wheels
+
+To roll his weight back round again: they rush
+Toward the circle's opposite point, collide
+Painfully once more, and curse each other afresh...
+
+
+Canto V (5th Circle - The Wrathful & Sullen)
+
+...for some time
+Before we reached the lofty tower's base
+Our eyes were following two points of flame
+
+Visible at the top; and answering these
+Another returned the signal, so far away
+The eye could barely catch it.
+
+Canto VI (6th Circle(Dis) - Heretics)
+
+...we in our turn
+Stepped forward toward the city and through the gate...
+
+
+Canto VII (7th Circle - Violent) Do the suicide, ring 2.
+
+All over the sand
+Distended flakes of fire drifted from aloft
+
+Slowly as mountain snow without a wind.
+
+
+Canto VIII (8th Circle - Those who are fraudulent)
+
+
+
+Canto IV (9th Circle - The betrayers)
+
+
+Emergence (Win)
+
+Through a round aperture I saw appear
+
+Some of the beautiful things that Heaven bears,
+Where we came forth, and once more saw the stars.
