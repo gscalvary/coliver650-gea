@@ -77,8 +77,13 @@ gameState == 7
 Canto IV (9th Circle - The betrayers)
 gameState == 8
 
-Game Over
+Chance for Redemption
 gameState == 9
+
+Game Over
+gameState == 10
+
+
 Emergence (Win)
 
 Through a round aperture I saw appear
