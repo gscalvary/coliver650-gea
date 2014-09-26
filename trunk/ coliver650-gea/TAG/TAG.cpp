@@ -54,22 +54,38 @@ void getInput() {
 
 void run_tests() {
 	
-	cout << "Running Canto test suite..." << endl << endl;
+	cout << "Running Canto test suite..." << endl;
 
 	// Initialize a test instance.
 	Test cantoTest;
 
 	// Test the Clock class.
 	cantoTest.test_Clock_class();
-	cout << "Clock class tests complete." << endl;
+	cout << endl << "Clock class tests complete." << endl;
 
 	// Test the Game class.
 	cantoTest.test_Game_class();
-	cout << "Game class tests complete." << endl;
+	cout << endl << "Game class tests complete." << endl;
 
 	// Test the Point class.
 	cantoTest.test_Point_class();
-	cout << "Point class tests complete." << endl;
+	cout << endl << "Point class tests complete." << endl;
+
+	// Test the Player class.
+	cantoTest.test_Player_class();
+	cout << endl << "Player class tests complete." << endl;
+
+	// Test the Message class.
+	cantoTest.test_Message_class();
+	cout << endl << "Message class tests complete." << endl;
+
+	// Test the Npc class.
+	cantoTest.test_Npc_class();
+	cout << endl << "Npc class tests complete." << endl;
+
+	// Test the circle class.
+	cantoTest.test_Circle_class();
+	cout << endl << "Circle class tests complete." << endl;
 
 	cout << endl << "Tests are conducted using assertions so failures are written to console." << endl;
 	cout << "No news is good news, all tests have passed!" << endl << endl;
@@ -91,7 +107,6 @@ int main(int argc, char* argv[]) {
 	}
 
 	// Initialize game.
-	Game cantoGame;
 
 	// Take control of standard console input.
 	hIn = GetStdHandle(STD_INPUT_HANDLE);
