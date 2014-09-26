@@ -18,7 +18,7 @@ The player, or Traveler, must learn why the occupants of this underworld are the
 
 The Traveler's human spirit can only withstand each circle a specific period of time.  The time may get shorter as the Traveler descends.  Periodically the game will warn the player of impending danger as the timer counts down.  Letting the timer reach zero will cause the player to be banished to where-ever the slothful or lazy are punished (3rd Circle, Gluttons, creative license!).  this is a lose state.
 
-Before being allowed to descend the demon of the circle will ask the Traveler of what sin the tormented are guilty.  The Traveler is always allowed to pass as the demons will lie if they give an incorrect answer and tell them it was correct.  After accumulating 5 incorrect answers the Traveler will be seized (perhaps 2D heuristic here to possibly escape or to try to limit the depth to which they are thrown?) and sent to permanently dwell with the falsifiers, 8th circle, pouch 10 (another lose state).  Yay, more creative license!
+Before being allowed to descend the demon of the circle will ask the Traveler of what sin the tormented are guilty.  The Traveler is always allowed to pass as the demons will lie if they give an incorrect answer by telling them it was correct.  After accumulating x incorrect answers the Traveler will be seized (perhaps 2D heuristic here to possibly escape or to try to limit the depth to which they are thrown?) and sent to permanently dwell with the falsifiers, 8th circle, pouch 10 (another lose state).  Yay, more creative license!
 
 Actions:
 (L)ook: use an array of strings advancing the index to reveal more Inferno text.
@@ -27,6 +27,7 @@ Actions:
 (R)eset: allow the player to reset the circle timer and actions, only allowable from the losing game state.
 (P)ause: allow the player to pause the game.
 (Q)uit: quit the game.
+(M)anual: list of game actions.
 
 Choose an answer to the demon's question:
 (A)
