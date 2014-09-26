@@ -18,10 +18,9 @@ The Traveler's human spirit can only withstand each circle a specific period of 
 Before being allowed to descend the demon that lords over the circle will ask the Traveler of what sin the tormented are guilty.  The Traveler is always allowed to pass as the demons will lie if they give an incorrect answer by telling them it was correct.  After accumulating x incorrect answers the Traveler will be seized and sent to permanently dwell with the falsifiers, 8th circle, pouch 10 (another lose state).  Yay, more creative license!  However, the player is given a chance, by those whose will makes things be, for redemption.  If they are able to answer a formerly incorrect answer correctly they will be placed "safely" into the circle into which they were trying to descend.
 
 Actions:
-(L)ook: use an array of strings advancing the index to reveal more Inferno text.
+(L)ook: use an array of strings advancing the index to reveal more Inferno text
 (T)alk Target: illicit stories from the underworld inhabitants, reveal more Inferno text.
 (D)escend: attempt to move to the next circle.
-(R)eset: allow the player to reset the circle timer and actions, only allowable from the losing game state.
 (P)ause: allow the player to pause the game.
 (Q)uit: quit the game.
 (M)anual: list of game actions.
