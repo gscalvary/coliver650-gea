@@ -1,16 +1,29 @@
 #pragma once
 #include "Clock.h"
+#include "Circle.h"
+#include "Player.h"
 
 class Game
 {
 private:
-	int state;
+	int priorState;
+	int currState;
+	int incorrectAnswerMax;
+	int throwSpeed;
+	Point throwPosition;
 
 public:
-	Game();
+	Game(vector<Circle> *pointer);
 	~Game();
 	Clock gameClock;
-	int getGameState();
+	Player gamePlayer;
+	vector<Circle> *cantos;
+	int getCurrGameState();
+	int getPriorGameState();
 	void updateGameState(int newstate);
+	int getIncorrectAnswerMax();
+	int getThrowSpeed();
+	int getThrowPositionX();
+	int getThrowPositionY();
 };
 
