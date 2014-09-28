@@ -15,8 +15,8 @@ private:
 	int descriptionsIndex;
 
 public:
-	// Circle: string, vector<Npc> *pointer, int, char, vector<Message> *Pointer -> Circle
-	// Takes a name, a pointer to a vector of Npc objects, a rate of player spirit erosion, a character
+	// Circle: string, vector<Npc> *pointer, int, char, vector<Message> *Pointer
+	// EFFECT: Takes a name, a pointer to a vector of Npc objects, a rate of player spirit erosion, a character
 	// representing the correct answer to a question asked of the player in this circle and a pointer
 	// to a vector of message objects and creates a circle object in memory.
 	// Example: see test class.
