@@ -4,6 +4,8 @@
 #include <vector>
 using namespace std;
 
+// A message object that facilitates the communication of the game and npcs with the users.  Many
+// are created as children of Circles, the Game and Npcs.
 class Message {
 private:
 	vector<string> text;

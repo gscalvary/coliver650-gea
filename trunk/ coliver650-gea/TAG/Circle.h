@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 
+// Representation of a game state, children of the game object, 11 are created.
 class Circle {
 private:
 	string name;

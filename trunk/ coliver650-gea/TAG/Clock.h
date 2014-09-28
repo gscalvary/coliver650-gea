@@ -1,6 +1,7 @@
 #pragma once
 #include <time.h>
 
+// A mechanism to record the passage of time in the game, one instance in the game as a child of the game object.
 class Clock
 {
 private:

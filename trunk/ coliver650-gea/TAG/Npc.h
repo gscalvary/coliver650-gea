@@ -1,6 +1,7 @@
 #pragma once
 #include "Message.h"
 
+// An object representing a non-player character.  Many are created as children of each Circle.
 class Npc {
 private:
 	string name;
