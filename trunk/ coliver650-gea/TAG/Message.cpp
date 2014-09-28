@@ -15,7 +15,7 @@ void Message::addText(string x) {
 void Message::play() {
 	cout << endl;
 	if (owner != "game") {
-		cout << owner << " says:" << endl;
+		cout << owner << " approaches and says:" << endl;
 	}
 	for (vector<string>::iterator it = text.begin(); it != text.end(); ++it) {
 		cout << *it << endl;
