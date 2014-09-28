@@ -47,7 +47,7 @@ void Circle::playIntroduction() {
 	descriptions->at(0).play();
 
 	if (inhabitants->size() > 0) {
-		cout << endl << "At this depth you may talk to: " << endl;
+		cout << endl << "Among those at this depth you may talk to: " << endl;
 		for (unsigned x = 0; x < inhabitants->size(); ++x) {
 			if (inhabitants->at(x).getType() == "shade") {
 				cout << " " << inhabitants->at(x).getName() << endl;

@@ -3,9 +3,10 @@
 
 Player::Player() {
 	spirit = 100;
+	isThrown = false;
 	// meters from origin, (0,0) is lower left of map.
 	position.updatePointx(100);
-	position.updatePointy(500);
+	position.updatePointy(0);
 }
 
 Player::~Player() {
@@ -22,6 +23,18 @@ void Player::erodeSpirit(int x) {
 	if (spirit < 0) {
 		spirit = 0;
 	}
+}
+
+void Player::refreshSpirit() {
+	spirit = 100;
+}
+
+bool Player::getIsThrown() {
+	return isThrown;
+}
+
+void Player::updateIsThrown(bool x) {
+	isThrown = x;
 }
 
 int Player::getPlayerPosX() {

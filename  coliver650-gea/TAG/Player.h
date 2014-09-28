@@ -6,6 +6,7 @@ using namespace std;
 class Player {
 private:
 	int spirit;
+	bool isThrown;
 	Point position;
 	vector<int> correctAnswers;
 	vector<int> incorrectAnswers;
@@ -15,6 +16,9 @@ public:
 	~Player();
 	int getSpirit();
 	void erodeSpirit(int x);
+	void refreshSpirit();
+	bool getIsThrown();
+	void updateIsThrown(bool x);
 	int getPlayerPosX();
 	int getPlayerPosY();
 	void updatePlayerPos(int x, int y);
