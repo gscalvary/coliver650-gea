@@ -7,7 +7,6 @@
 class Circle {
 private:
 	string name;
-	vector<Npc> *inhabitants;
 	int startTime;
 	int spiritErosionRate;
 	char correctAnswer;
@@ -18,6 +17,7 @@ private:
 public:
 	Circle(string name, vector<Npc> *Nptr, int spiritErosionRate, char correctAnswer, vector<Message> *Mptr);
 	~Circle();
+	vector<Npc> *inhabitants;
 	string getName();
 	char getCorrectAnswer();
 	int getStartTime();
