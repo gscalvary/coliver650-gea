@@ -1,13 +1,19 @@
 #include "Test.h"
 
+// Test:
+// EFFECT: Creates a Test object in memory.
+// Example: see test class.
 Test::Test() {
 
 }
-
+// ~Test:
+// EFFECT: De-allocates the memory reserved for a Test object.
 Test::~Test() {
 
 }
-
+// test_Clock_class:
+// EFFECT: Allocates a Clock object and executes and validates the effects of all its functions.
+// Example: testGame.test_Clock_class();
 void Test::test_Clock_class() {
 
 	// Mark a test start time, used to test the clock start time later.
@@ -46,7 +52,9 @@ void Test::test_Clock_class() {
 	_sleep(sleepTime);
 	assert((5.0 > testClock.getClockElapsedTime()) && (testClock.getClockElapsedTime() >= 4.0));
 }
-
+// test_Game_class:
+// EFFECT: Allocates a Game object and any children objects and executes and validates the effects of all its functions.
+// Example: testGame.test_Game_class();
 void Test::test_Game_class() {
 
 	// Initialize an Npc message.
@@ -144,7 +152,9 @@ void Test::test_Game_class() {
 	assert(10 == testGame.getCurrGameState());
 	assert(1 == testGame.getPriorGameState());
 }
-
+// test_Point_class:
+// EFFECT: Allocates a Point object and executes and validates the effects of all its functions.
+// Example: testGame.test_Point_class();
 void Test::test_Point_class() {
 
 	// Initialize a point.
@@ -163,7 +173,9 @@ void Test::test_Point_class() {
 	testPoint.updatePointy(i);
 	assert(1 == testPoint.getPointy());
 }
-
+// test_Player_class:
+// EFFECT: Allocates a Player object and any children objects and executes and validates the effects of all its functions.
+// Example: testGame.test_Player_class();
 void Test::test_Player_class() {
 
 	// Initialize a player.
@@ -213,7 +225,9 @@ void Test::test_Player_class() {
 	testPlayer.removeIncorrectAnswers(1);
 	assert(2 == testPlayer.getNumIncorrectAnswers());
 }
-
+// test_Message_class:
+// EFFECT: Allocates a Message object and executes and validates the effects of all its functions.
+// Example: testGame.test_Message_class();
 void Test::test_Message_class() {
 
 	// Initialize a message.
@@ -233,7 +247,9 @@ void Test::test_Message_class() {
 	testMessage2.addText("No living man, though once I was.");
 	testMessage2.play();
 }
-
+// test_Npc_class:
+// EFFECT: Allocates an Npc object and any children objects and executes and validates the effects of all its functions.
+// Example: testGame.test_Npc_class();
 void Test::test_Npc_class() {
 
 	// Initialize a message.
@@ -253,7 +269,9 @@ void Test::test_Npc_class() {
 	assert("Francesca" == testNpc1.getName());
 	testNpc1.speak();
 }
-
+// test_Circle_class:
+// EFFECT: Allocates a Circle object and any children objects and executes and validates the effects of all its functions.
+// Example: testGame.test_Circle_class();
 void Test::test_Circle_class() {
 
 	// Initialize an Npc message.
