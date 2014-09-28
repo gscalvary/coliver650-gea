@@ -108,7 +108,7 @@ void Test::test_Game_class() {
 	// Test incorrect answers maximum.
 	assert(3 == testGame.getIncorrectAnswerMax());
 	// Test throw speed.
-	assert(200 == testGame.getThrowSpeed());
+	assert(100 == testGame.getThrowSpeed());
 	// Test throw position.
 	assert(2000 == testGame.getThrowPositionX());
 	assert(0 == testGame.getThrowPositionY());
