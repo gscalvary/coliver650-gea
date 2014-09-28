@@ -1,3 +1,9 @@
+// This program was written as a school porject and is not a commercial enterprise.
+// Program game text was taken from Dante's Inferno, specifically it was adapted from the following translation:
+// Pinsky, Robert. The Inferno of Dante. New York: Farrar, Straus and Giroux, 1994. Print.
+//
+// DATA DEFINITIONS
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <windows.h>
 #include <iostream>
 #include <string>
@@ -33,7 +39,17 @@ bool secondWarningPlayed = false;
 // Throw handling variables.
 int throwCheckPoint = 0;
 
+// CODE
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // main() helper functions.
+// processAsciiChar:
+// EFFECT: Process windows console input (INPUT_RECORD) and writes to the programs input buffer one character at a time.
+// The function will signal input is ready for validation when the enter key is depressed or when the program input
+// buffer is full.  The function handles the backspace key by popping input from the program input buffer.  The function
+// also redirects input to output so the user can see what is being typed.  The function will flush the windows and programs
+// input buffer when enter is read.
+// INVARIANT: Called on keydown when an ASCII character is input.
+// Example: processAsciiChar()
 void processAsciiChar() {
 	
 	if (inRec.Event.KeyEvent.uChar.AsciiChar == '\r' || inputBuffer.size() >= bufferSize) {
@@ -57,20 +73,27 @@ void processAsciiChar() {
 		}
 	}
 }
-
+// getInput:
+// EFFECT: Reads once character at a time from the windows console input buffer.  If a key event is 
+// detected and the event is the pressing of a key to enter an ASCII value it calls for further
+// input processing.
+// INVARIANT: Called when console input is detected.
+// Example: getInput()
 void getInput() {
 	
 	ReadConsoleInput(hIn, &inRec, inputBytes, &numRead);
 	if (inRec.EventType == KEY_EVENT) {
 		if (inRec.Event.KeyEvent.bKeyDown) {
-			// Add code to unpause game.
 			if (inRec.Event.KeyEvent.uChar.AsciiChar) {
 				processAsciiChar();
 			}
 		}
 	}
 }
-
+// run_tests:
+// EFFECT: Initializes a test object and executes each of its test functions.
+// INVARIANT: Called only when the game is executed with a 't' parm.
+// Example: run_tests()
 void run_tests() {
 	
 	cout << "Running Canto test suite..." << endl;
@@ -112,7 +135,9 @@ void run_tests() {
 	cin.ignore();
 }
 
-// main() the function that drives the game.
+// main: int, char* -> int
+// Takes a character 't' to initiate the program in test mode, the absence of a parm initiates normal game operation.
+// Runs all tests in test mode or creates all game objects and executes the game loop.
 int main(int argc, char* argv[]) {
 
 	// A parameter of 't' passed to the game runs its test suite only then exits.
@@ -265,7 +290,7 @@ int main(int argc, char* argv[]) {
 	Message cantoIVShadeIMessage("An ancient clergyman");
 	cantoIVShadeIMessage.addText("Wrongness in how to give and how to have");
 	cantoIVShadeIMessage.addText("Took the fair world from me and brought me this,");
-	cantoIVShadeIMessage.addText("My ugly brawl, which words need not retirieve.");
+	cantoIVShadeIMessage.addText("My ugly brawl, which words need not retrieve.");
 	// -- Demon
 	Message cantoIVDemonMessage("Plutus the defiler");
 	cantoIVDemonMessage.addText("Tell me traveler, of what are these shades guilty of being?");
@@ -341,13 +366,13 @@ int main(int argc, char* argv[]) {
 	// -- Circle Introduction
 	Message cantoVIMessage0("game");
 	cantoVIMessage0.addText("Here is a great plain filled with woe and torment.");
-	cantoVIMessage0.addText("The ground is made uneven by tombs-around which arose flames");
-	cantoVIMessage0.addText("That made the sepulchers glow with fiercer heat");
+	cantoVIMessage0.addText("The ground is made uneven by tombs-around which arise flames");
+	cantoVIMessage0.addText("That make the sepulchers glow with fiercer heat");
 	cantoVIMessage0.addText("Than a smith could need.");
 	// -- Circle First Description
 	Message cantoVIMessage1("game");
-	cantoVIMessage1.addText("Among these catacombs the lids were raised,");
-	cantoVIMessage1.addText("With sounds of woe so great those within surely suffered horrible pain.");
+	cantoVIMessage1.addText("Among these catacombs the lids are raised,");
+	cantoVIMessage1.addText("With sounds of woe so great those within surely suffer horrible pain.");
 	// - Canto VI Npcs
 	Npc cantoVIShadeINpc("tisiphone", "shade", &cantoVIShadeIMessage);
 	Npc cantoVIDemonNpc("megaera", "demon", &cantoVIDemonMessage);
@@ -404,7 +429,7 @@ int main(int argc, char* argv[]) {
 	cantoVIIIMessage0.addText("On the other side of the river of blood.");
 	cantoVIIIMessage0.addText("You see in its confines serpents - a frightening swarm.");
 	cantoVIIIMessage0.addText("Amid this horde, cruel, grim and dense,");
-	cantoVIIIMessage0.addText("People were running, naked and terrified,");
+	cantoVIIIMessage0.addText("People are running, naked and terrified,");
 	cantoVIIIMessage0.addText("Without a hope of hiding or a chance for safety.");
 	// -- Circle First Description
 	Message cantoVIIIMessage1("game");
@@ -473,7 +498,7 @@ int main(int argc, char* argv[]) {
 	cantoXMessage0.addText("As many turns as levels down that you will be thrown.");
 	cantoXMessage0.addText("Before you can protest he snatches and heaves you into the fetid air.");
 	cantoXMessage0.addText("Suddenly a voice, heard only by you, offers a chance for redemption.");
-	cantoXMessage0.addText("Answer one question with truth before you hit the ground");
+	cantoXMessage0.addText("Answer that last question with truth before you hit the ground");
 	cantoXMessage0.addText("And you will be set back on your journey traveler.");
 	// -- Circle First Description
 	Message cantoXMessage1("game");
@@ -667,7 +692,7 @@ int main(int argc, char* argv[]) {
 					case 9:
 						// Correct answer.
 						if (cantosGame.cantos->at(cantosGame.getPriorGameState()).getCorrectAnswer() == command) {
-							cout << "Your flight is unceremoniously abruptly halted" << endl;
+							cout << "Your flight is abruptly halted" << endl;
 							cout << "And you are yanked by an unseen hand back to the circle" << endl;
 							cout << "From whence you came, your journey continues..." << endl;
 							cantosGame.gamePlayer.addCorrectAnswers(cantosGame.getPriorGameState());
@@ -737,7 +762,9 @@ int main(int argc, char* argv[]) {
 					}
 					break;
 				case 'l':
-					cantosGame.cantos->at(cantosGame.getCurrGameState()).playNextDescription();
+					if (cantosGame.getCurrGameState() != 9) {
+						cantosGame.cantos->at(cantosGame.getCurrGameState()).playNextDescription();
+					}
 					break;
 				case 'd':
 					cout << "You attempt to leave this area when...";
@@ -759,8 +786,10 @@ int main(int argc, char* argv[]) {
 					manualMessage.play();
 					break;
 				case 's':
-					cout << "Your current spirit is: " << cantosGame.gamePlayer.getSpirit() << " of 100." << endl;
-					cout << "Letting your spirit reach 0 would be a bad look for you traveler." << endl;
+					if (cantosGame.getCurrGameState !9) {
+						cout << "Your current spirit is: " << cantosGame.gamePlayer.getSpirit() << " of 100." << endl;
+						cout << "Letting your spirit reach 0 would be a bad look for you traveler." << endl;
+					}
 					break;
 				case 't':
 					for (auto inhabitant = cantosGame.cantos->at(cantosGame.getCurrGameState()).inhabitants->begin();
@@ -856,7 +885,7 @@ int main(int argc, char* argv[]) {
 			}
 		}
 
-		// Check for game completion.
+		// Handle game completion.
 		if (cantosGame.getCurrGameState() == 10) {
 			cout << "\nYour score is " << cantosGame.gamePlayer.getNumCorrectAnswers() << " out of 9 questions answered correctly.";
 			cout << "\nThe game is over, thank you for playing!" << endl;
