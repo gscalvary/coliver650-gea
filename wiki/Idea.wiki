@@ -34,14 +34,6 @@ Choose an answer to the demon's question:
 
 Introduction
 
-...when I came to stop
-Below a hill that marked one end of the valley
-That had pierced my heart with terror, I looked up
-
-Toward the crest and saw its shoulders already
-Mantled in rays of that bright planet that shows
-The road to everyone, whatever our journey.
-
 Perhaps a weary traveler, perhaps suspended in dream, or perhaps passed from what you once knew.  The way back is obscured, diffuse and out of reach.  Only the way ahead is revealed by the first rays of dawn.  And so while the dark valley watches you descend into the chilled, timeless air of a cavern at the base of the large hill crouched before you.
 
 Barely discernable in a distant dim recess an elderly man, whose image seems nearly to fade, waits patiently for you.
@@ -84,11 +76,6 @@ gameState == 10
 
 
 Emergence (Win)
-
-Through a round aperture I saw appear
-
-Some of the beautiful things that Heaven bears,
-Where we came forth, and once more saw the stars.
 
 or...
 
