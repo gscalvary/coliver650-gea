@@ -9,6 +9,7 @@
 #include "Point.h"
 #include "Player.h"
 
+// An object created to facilitate testing, only one is created when the game runs in test mode.
 class Test {
 private:
 

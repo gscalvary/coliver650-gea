@@ -3,6 +3,7 @@
 #include <vector>
 using namespace std;
 
+// An object representing the player character.  Only one is created as a child of the Game.
 class Player {
 private:
 	int spirit;

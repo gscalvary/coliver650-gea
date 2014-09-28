@@ -3,6 +3,7 @@
 #include "Circle.h"
 #include "Player.h"
 
+// The primary object in the design, the game itself, one instance is created.
 class Game
 {
 private:

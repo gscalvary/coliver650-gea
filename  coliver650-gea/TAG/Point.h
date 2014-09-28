@@ -1,4 +1,7 @@
 #pragma once
+
+// A representation of a point in 2D space with an x and a y coordinate.  One is created as a child of player and one
+// is created as a child of the Game.
 class Point
 {
 private:
