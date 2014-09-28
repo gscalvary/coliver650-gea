@@ -108,10 +108,10 @@ void Test::test_Game_class() {
 	// Test incorrect answers maximum.
 	assert(3 == testGame.getIncorrectAnswerMax());
 	// Test throw speed.
-	assert(10 == testGame.getThrowSpeed());
+	assert(200 == testGame.getThrowSpeed());
 	// Test throw position.
 	assert(2000 == testGame.getThrowPositionX());
-	assert(3000 == testGame.getThrowPositionY());
+	assert(0 == testGame.getThrowPositionY());
 	assert("Canto II" == testGame.cantos->at(0).getName());
 	
 	// Update tests.
@@ -172,9 +172,11 @@ void Test::test_Player_class() {
 	// Constructor tests.
 	// Test spirit.
 	assert(100 == testPlayer.getSpirit());
+	// Test isThrown.
+	assert(false == testPlayer.getIsThrown());
 	// Test position creation.
 	assert(100 == testPlayer.getPlayerPosX());
-	assert(500 == testPlayer.getPlayerPosY());
+	assert(0 == testPlayer.getPlayerPosY());
 	// Test number of correct answers vector construction.
 	assert(0 == testPlayer.getNumCorrectAnswers());
 	// Test number of incorrect answers vector construction.
@@ -186,6 +188,11 @@ void Test::test_Player_class() {
 	assert(90 == testPlayer.getSpirit());
 	testPlayer.erodeSpirit(100);
 	assert(0 == testPlayer.getSpirit());
+	testPlayer.refreshSpirit();
+	assert(100 == testPlayer.getSpirit());
+	// Test isThrown update.
+	testPlayer.updateIsThrown(true);
+	assert(true == testPlayer.getIsThrown());
 	// Test position update.
 	testPlayer.updatePlayerPos(1, 2);
 	assert(1 == testPlayer.getPlayerPosX());

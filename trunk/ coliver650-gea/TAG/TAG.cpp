@@ -15,11 +15,23 @@ INPUT_RECORD inRec;
 DWORD numRead, numEvents;
 bool validateInput = false;
 bool processInput = false;
-char command = ' ';
-string talkTarget;
 unsigned bufferSize = 128;
 int inputBytes = 1;
 vector<char> inputBuffer;
+
+// Input parsing variables.
+char command = ' ';
+string talkTarget;
+
+// Spirit handling variables.
+int checkSpiritInterval = 15;
+int nextCheckSpirit = 15;
+int stateElapsedTime = 0;
+bool firstWarningPlayed = false;
+bool secondWarningPlayed = false;
+
+// Throw handling variables.
+int throwCheckPoint = 0;
 
 // main() helper functions.
 void processAsciiChar() {
@@ -280,7 +292,7 @@ int main(int argc, char* argv[]) {
 	vector<Npc> cantoIVNpcs = { cantoIVShadeINpc, cantoIVDemonNpc };
 	// - Canto IV Circle
 	vector<Message> cantoIVMessages = { cantoIVMessage0, cantoIVMessage1 };
-	Circle cantoIVCircle("Canto IV", &cantoIVNpcs, 20, 'c', &cantoIVMessages);
+	Circle cantoIVCircle("Canto IV", &cantoIVNpcs, 15, 'c', &cantoIVMessages);
 
 	// - Canto V Messages
 	// -- Shade I
@@ -312,7 +324,7 @@ int main(int argc, char* argv[]) {
 	vector<Npc> cantoVNpcs = { cantoVShadeINpc, cantoVDemonNpc };
 	// - Canto V Circle
 	vector<Message> cantoVMessages = { cantoVMessage0, cantoVMessage1 };
-	Circle cantoVCircle("Canto V", &cantoVNpcs, 20, 'b', &cantoVMessages);
+	Circle cantoVCircle("Canto V", &cantoVNpcs, 15, 'b', &cantoVMessages);
 
 	// - Canto VI Messages
 	// -- Shade I
@@ -342,7 +354,7 @@ int main(int argc, char* argv[]) {
 	vector<Npc> cantoVINpcs = { cantoVIShadeINpc, cantoVIDemonNpc };
 	// - Canto VI Circle
 	vector<Message> cantoVIMessages = { cantoVIMessage0, cantoVIMessage1 };
-	Circle cantoVICircle("Canto VI", &cantoVINpcs, 20, 'b', &cantoVIMessages);
+	Circle cantoVICircle("Canto VI", &cantoVINpcs, 15, 'b', &cantoVIMessages);
 
 	// - Canto VII Messages
 	// -- Shade I
@@ -372,7 +384,7 @@ int main(int argc, char* argv[]) {
 	vector<Npc> cantoVIINpcs = { cantoVIIShadeINpc, cantoVIIDemonNpc };
 	// - Canto VII Circle
 	vector<Message> cantoVIIMessages = { cantoVIIMessage0, cantoVIIMessage1 };
-	Circle cantoVIICircle("Canto VII", &cantoVIINpcs, 30, 'a', &cantoVIIMessages);
+	Circle cantoVIICircle("Canto VII", &cantoVIINpcs, 20, 'a', &cantoVIIMessages);
 
 	// - Canto VIII Messages
 	// -- Shade I
@@ -407,7 +419,7 @@ int main(int argc, char* argv[]) {
 	vector<Npc> cantoVIIINpcs = { cantoVIIIShadeINpc, cantoVIIIDemonNpc };
 	// - Canto VIII Circle
 	vector<Message> cantoVIIIMessages = { cantoVIIIMessage0, cantoVIIIMessage1 };
-	Circle cantoVIIICircle("Canto VIII", &cantoVIIINpcs, 30, 'c', &cantoVIIIMessages);
+	Circle cantoVIIICircle("Canto VIII", &cantoVIIINpcs, 20, 'c', &cantoVIIIMessages);
 
 	// - Canto IX Messages
 	// -- Shade I
@@ -437,7 +449,7 @@ int main(int argc, char* argv[]) {
 	vector<Npc> cantoIXNpcs = { cantoIXShadeINpc, cantoIXDemonNpc };
 	// - Canto IX Circle
 	vector<Message> cantoIXMessages = { cantoIXMessage0, cantoIXMessage1 };
-	Circle cantoIXCircle("Canto IX", &cantoIXNpcs, 30, 'a', &cantoIXMessages);
+	Circle cantoIXCircle("Canto IX", &cantoIXNpcs, 20, 'a', &cantoIXMessages);
 
 	// - Canto X Messages
 	// -- Shade I
@@ -453,15 +465,27 @@ int main(int argc, char* argv[]) {
 	cantoXDemonMessage.addText(" c) Unbaptized");
 	// -- Circle Introduction
 	Message cantoXMessage0("game");
-	cantoXMessage0.addText("");
-	cantoXMessage0.addText("");
-	cantoXMessage0.addText("");
+	cantoXMessage0.addText("A red flash instantaneously follows your answer - ");
+	cantoXMessage0.addText("To your dismay you find yourself standing back at the");
+	cantoXMessage0.addText("Entrance to the second circle directly before Minos the");
+	cantoXMessage0.addText("Dreadful.  Minos, great connoisseur of sin, discerns");
+	cantoXMessage0.addText("You to be a falsifier, and wraps himself in his tail eight times,");
+	cantoXMessage0.addText("As many turns as levels down that you will be thrown.");
+	cantoXMessage0.addText("Before you can protest he snatches and heaves you into the fetid air.");
+	cantoXMessage0.addText("Suddenly a voice, heard only by you, offers a chance for redemption.");
+	cantoXMessage0.addText("Answer one question with truth before you hit the ground");
+	cantoXMessage0.addText("And you will be set back on your journey traveler.");
 	// -- Circle First Description
 	Message cantoXMessage1("game");
-	cantoXMessage1.addText("");
-	cantoXMessage1.addText("");
+	cantoXMessage1.addText("Before you are able to utter the correct answer,");
+	cantoXMessage1.addText("You land with a sickening crunch but by unseen force");
+	cantoXMessage1.addText("Your broken body is animated and quickly engulfed in fire,");
+	cantoXMessage1.addText("Like the wick of a freshly lit candle.");
+	cantoXMessage1.addText("Here the glittering beauty of your burning soul,");
+	cantoXMessage1.addText("Wrapped in the flame of your deceit, graces the vast valley of the");
+	cantoXMessage1.addText("Eighth fosse as a firefly does a peasants field on a late summer eve.");
 	// - Canto X Npcs
-	Npc cantoXShadeINpc("virgil", "shade", &cantoXShadeIMessage);
+	Npc cantoXShadeINpc("no one...", "shade", &cantoXShadeIMessage);
 	Npc cantoXDemonNpc("socrates", "demon", &cantoXDemonMessage);
 	vector<Npc> cantoXNpcs = { cantoXShadeINpc, cantoXDemonNpc };
 	// - Canto X Circle
@@ -477,10 +501,20 @@ int main(int argc, char* argv[]) {
 	cantoXIMessage0.addText("Until at last...through a round aperture you see appear");
 	cantoXIMessage0.addText("Some of the beautiful things that heaven bears");
 	cantoXIMessage0.addText("Where you come forth, and once more see the stars.");
+	// -- Circle First Description
+	Message cantoXIMessage1("game");
+	cantoXIMessage1.addText("Your sloth has pushed your spirit beyond its breaking point.");
+	cantoXIMessage1.addText("Your spirit, beyond weary, is now unable to sustain the");
+	cantoXIMessage1.addText("Relentless assault of the underworld.  Unfortunately you");
+	cantoXIMessage1.addText("Are now ripe for harvest.  Before you are able to drag yourself");
+	cantoXIMessage1.addText("Another inch a large three-headed dog rips you from the ground -");
+	cantoXIMessage1.addText("Cerberus has made a special trip to retrieve you.  You will now");
+	cantoXIMessage1.addText("Be jealously guarded by the beast as a favorite chew toy in your");
+	cantoXIMessage1.addText("New home, the third circle of the underworld.");
 	// - Canto XI Npcs
 	vector<Npc> cantoXINpcs;
 	// - Canto XI Circle
-	vector<Message> cantoXIMessages = { cantoXIMessage0 };
+	vector<Message> cantoXIMessages = { cantoXIMessage0, cantoXIMessage1 };
 	Circle cantoXICircle("Canto XI", &cantoXINpcs, 0, ' ', &cantoXIMessages);
 
 	// Initialize a game.
@@ -629,31 +663,78 @@ int main(int argc, char* argv[]) {
 				case 'a':
 				case 'b':
 				case 'c':
-					// The player has offered the correct answer, record this.
-					if (cantosGame.cantos->at(cantosGame.getCurrGameState()).getCorrectAnswer() == command) {
-						cantosGame.gamePlayer.addCorrectAnswers(cantosGame.getCurrGameState());
-					}
-					// The player has offered an incorrect answer, record this.
-					else {
-						cantosGame.gamePlayer.addIncorrectAnswers(cantosGame.getCurrGameState());
-					}
-					// Move the game state forward based on the answers given.
-					if (cantosGame.gamePlayer.getNumIncorrectAnswers() >= cantosGame.getIncorrectAnswerMax()) {
-						cantosGame.updateGameState(9);
-					}
-					else {
-						// If the last circle has been explored update game state to game over state.
-						// Else move the game forward one state.
-						if (cantosGame.getCurrGameState() == 8) {
-							cantosGame.updateGameState(10);
+					switch (cantosGame.getCurrGameState()) {
+					case 9:
+						// Correct answer.
+						if (cantosGame.cantos->at(cantosGame.getPriorGameState()).getCorrectAnswer() == command) {
+							cout << "Your flight is unceremoniously abruptly halted" << endl;
+							cout << "And you are yanked by an unseen hand back to the circle" << endl;
+							cout << "From whence you came, your journey continues..." << endl;
+							cantosGame.gamePlayer.addCorrectAnswers(cantosGame.getPriorGameState());
+							cantosGame.gamePlayer.removeIncorrectAnswers(cantosGame.getPriorGameState());
+							// If the last circle has been explored update game state to game over state.
+							// Else move the game forward one state.
+							if (cantosGame.getCurrGameState() == 8) {
+								cantosGame.updateGameState(10);
+							}
+							else {
+								// Reset the check spirit time for the new game state.
+								nextCheckSpirit = checkSpiritInterval;
+								// Reset the players spirit.
+								cantosGame.gamePlayer.refreshSpirit();
+								// Reset the spirit warning.
+								firstWarningPlayed = false;
+								secondWarningPlayed = false;
+								// Update game state.
+								cantosGame.updateGameState(cantosGame.getPriorGameState() + 1);
+							}
+							cout << "You enter a new area where:" << endl;
+							cantosGame.cantos->at(cantosGame.getCurrGameState()).playIntroduction();
 						}
 						else {
-							cantosGame.updateGameState(cantosGame.getCurrGameState() + 1);
+							cout << "The voice resonates in your head again," << endl;
+							cout << "Tsk, tsk, tsk...try again?" << endl;
 						}
+						break;
+					default:
+						// The player has offered the correct answer, record this.
+						if (cantosGame.cantos->at(cantosGame.getCurrGameState()).getCorrectAnswer() == command) {
+							cantosGame.gamePlayer.addCorrectAnswers(cantosGame.getCurrGameState());
+							cantosGame.gamePlayer.removeIncorrectAnswers(cantosGame.getCurrGameState());
+						}
+						// The player has offered an incorrect answer, record this.
+						else {
+							cantosGame.gamePlayer.addIncorrectAnswers(cantosGame.getCurrGameState());
+						}
+						// Move the game state forward based on the answers given.
+						if (cantosGame.gamePlayer.getNumIncorrectAnswers() >= cantosGame.getIncorrectAnswerMax()) {
+							cantosGame.updateGameState(9);
+							cantosGame.gamePlayer.updateIsThrown(false);
+							cantosGame.gamePlayer.updatePlayerPos(100, 0);
+						}
+						else {
+							// If the last circle has been explored update game state to game over state.
+							// Else move the game forward one state.
+							if (cantosGame.getCurrGameState() == 8) {
+								cantosGame.updateGameState(10);
+							}
+							else {
+								// Reset the check spirit time for the new game state.
+								nextCheckSpirit = checkSpiritInterval;
+								// Reset the players spirit.
+								cantosGame.gamePlayer.refreshSpirit();
+								// Reset the spirit warning.
+								firstWarningPlayed = false;
+								secondWarningPlayed = false;
+								// Update game state.
+								cantosGame.updateGameState(cantosGame.getCurrGameState() + 1);
+							}
+						}
+						// Play introduction messages.
+						cout << "You enter a new area where:" << endl;
+						cantosGame.cantos->at(cantosGame.getCurrGameState()).playIntroduction();
+						break;
 					}
-					// Play introduction messages.
-					cout << "You enter a new area where:" << endl;
-					cantosGame.cantos->at(cantosGame.getCurrGameState()).playIntroduction();
 					break;
 				case 'l':
 					cantosGame.cantos->at(cantosGame.getCurrGameState()).playNextDescription();
@@ -679,7 +760,7 @@ int main(int argc, char* argv[]) {
 					break;
 				case 's':
 					cout << "Your current spirit is: " << cantosGame.gamePlayer.getSpirit() << " of 100." << endl;
-					cout << "Letting your spirit reach 0 is bound to be trouble." << endl;
+					cout << "Letting your spirit reach 0 would be a bad look for you traveler." << endl;
 					break;
 				case 't':
 					for (auto inhabitant = cantosGame.cantos->at(cantosGame.getCurrGameState()).inhabitants->begin();
@@ -697,25 +778,85 @@ int main(int argc, char* argv[]) {
 			cout << "> ";
 		}
 
-		// Add code to deal with time passage.
-		// -- erode spirit
-		// Check spirit.
-		// -- issue warning at 50, 25, 10
-		// -- make the player a permanent resident at zero
-		// If game state 9
-		// -- If isThrown is false
-		// ---- play message of siezure
-		// ---- play message for redemption chance
-		// ---- play question
-		// ---- set new Player state to isThrown
-		// -- else
-		// ---- if player position == destination position
-		// ------ update game status to 10
-		// ---- else
-		// ------ update position
-		// ------ play warning as destination approaches
+		// Update the game world based on the passage of time.
+		// Spirit updates are only applicable while traveling in the circles (game state 0 - 8).
+		if (cantosGame.getCurrGameState() < 9) {
+			// Erode spirit.
+			stateElapsedTime =
+				cantosGame.gameClock.getClockElapsedTime() - cantosGame.cantos->at(cantosGame.getCurrGameState()).getStartTime();
+			if (stateElapsedTime % nextCheckSpirit == 0) {
+				nextCheckSpirit += checkSpiritInterval;
+				cantosGame.gamePlayer.erodeSpirit(cantosGame.cantos->at(cantosGame.getCurrGameState()).getSpiritErosionRate());
+			}
+			// Make game world changes based on the new spirit value.
+			// If spirit is 0 then game over!
+			if (cantosGame.gamePlayer.getSpirit() == 0) {
+				cantosGame.updateGameState(10);
+				cantosGame.cantos->at(cantosGame.getCurrGameState()).playNextDescription();
+			}
+			else {
+				// If spirit is about to be 0 warn the player.
+				if (cantosGame.gamePlayer.getSpirit() -
+					cantosGame.cantos->at(cantosGame.getCurrGameState()).getSpiritErosionRate() <= 0) {
+					if (!secondWarningPlayed) {
+						secondWarningPlayed = true;
+						cout << "\nYour head reels...you are succumbing to this circle's attack on your spirit." << endl;
+						cout << "You must quickly move on or be lost forever!" << endl;
+						cout << "> ";
+						FlushConsoleInputBuffer(hIn);
+						inputBuffer.clear();
+					}
+				}
+				else {
+					// If spirit is getting low warn the player.
+					if (cantosGame.gamePlayer.getSpirit() -
+						2*cantosGame.cantos->at(cantosGame.getCurrGameState()).getSpiritErosionRate() <= 0) {
+						if (!firstWarningPlayed) {
+							firstWarningPlayed = true;
+							cout << "\nYou are becoming increasingly uncomfortable in this circle." << endl;
+							cout << "You feel unseen malevolent forces tearing at your spirit." << endl;
+							cout << "The little voice inside your head urges you to move on." << endl;
+							cout << "> ";
+							FlushConsoleInputBuffer(hIn);
+							inputBuffer.clear();
+						}
+					}
+				}
+			}
+		}
 
-		// Game over state.
+		// Handle special game state where the player has been labeled a falsifier and is about to face the consequences.
+		if (cantosGame.getCurrGameState() == 9) {
+			if (cantosGame.gamePlayer.getIsThrown()) {
+				if (cantosGame.getThrowPositionX() <= cantosGame.gamePlayer.getPlayerPosX() &&
+					cantosGame.getThrowPositionY() <= cantosGame.gamePlayer.getPlayerPosY()) {
+					cantosGame.cantos->at(cantosGame.getCurrGameState()).playNextDescription();
+					cantosGame.updateGameState(10);
+				}
+				else {
+					if (throwCheckPoint < cantosGame.gameClock.getClockElapsedTime()) {
+						throwCheckPoint = cantosGame.gameClock.getClockElapsedTime();
+						cantosGame.gamePlayer.updatePlayerPos(cantosGame.gamePlayer.getPlayerPosX() + cantosGame.getThrowSpeed(),
+							cantosGame.gamePlayer.getPlayerPosY());
+					}
+				}
+			}
+			else {
+				cantosGame.gamePlayer.updateIsThrown(true);
+				throwCheckPoint = cantosGame.cantos->at(cantosGame.getCurrGameState()).getStartTime();
+				for (auto inhabitant = cantosGame.cantos->at(cantosGame.getPriorGameState()).inhabitants->begin();
+					inhabitant != cantosGame.cantos->at(cantosGame.getPriorGameState()).inhabitants->end();
+					++inhabitant) {
+					if (inhabitant->getType() == "demon") {
+						inhabitant->speak();
+						cantosGame.cantos->at(cantosGame.getCurrGameState()).setQuestionToAsked();
+					}
+				}
+				cout << "> ";
+			}
+		}
+
+		// Check for game completion.
 		if (cantosGame.getCurrGameState() == 10) {
 			cout << "\nYour score is " << cantosGame.gamePlayer.getNumCorrectAnswers() << " out of 9 questions answered correctly.";
 			cout << "\nThe game is over, thank you for playing!" << endl;

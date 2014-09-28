@@ -6,10 +6,10 @@ Game::Game(vector<Circle> *Cptr) {
 	currState = 0;
 	incorrectAnswerMax = 3;
 	// meters per second
-	throwSpeed = 10;
+	throwSpeed = 100;
 	// meters from origin, (0,0) is lower left of map.
 	throwPosition.updatePointx(2000);
-	throwPosition.updatePointy(3000);
+	throwPosition.updatePointy(0);
 	cantos = Cptr;
 }
 
