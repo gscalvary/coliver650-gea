@@ -574,7 +574,7 @@ int main(int argc, char* argv[]) {
 	cout << "Press any key to learn the game commands...";
 	cin.ignore();
 	manualMessage.play();
-	cout << endl << "Press any key to decend..." << endl;
+	cout << endl << "Press any key to descend..." << endl;
 	cin.ignore();
 	descentMessage.play();
 	// Play state introduction message.
@@ -786,7 +786,7 @@ int main(int argc, char* argv[]) {
 					manualMessage.play();
 					break;
 				case 's':
-					if (cantosGame.getCurrGameState !9) {
+					if (cantosGame.getCurrGameState() != 9) {
 						cout << "Your current spirit is: " << cantosGame.gamePlayer.getSpirit() << " of 100." << endl;
 						cout << "Letting your spirit reach 0 would be a bad look for you traveler." << endl;
 					}
