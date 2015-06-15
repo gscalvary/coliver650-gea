@@ -1,0 +1,1 @@
+A very basic text-based adventure game engine coded in C++ using object orientated design.  Done as part of a school project.
